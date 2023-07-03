@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jumusu.clients.CategoryClient;
 import com.jumusu.param.ProductHotParam;
+import com.jumusu.param.ProductIdParam;
 import com.jumusu.param.ProductIdsParam;
+import com.jumusu.pojo.Picture;
 import com.jumusu.pojo.Product;
+import com.jumusu.product.mapper.PictureMapper;
 import com.jumusu.product.mapper.ProductMapper;
 import com.jumusu.product.service.ProductService;
 import com.jumusu.utils.R;
@@ -27,6 +30,8 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private PictureMapper pictureMapper;
     //引入feign客户端，需要在启动类加配置注解
     @Autowired
     private CategoryClient categoryClient;
@@ -120,6 +125,37 @@ public class ProductServiceImpl implements ProductService {
 
         R ok = R.ok("查询成功",page.getRecords(),page.getTotal());
         log.info("ProductServiceImpl.byCategory业务结束，结果{}",ok);
+        return ok;
+    }
+
+    /**
+     * 根据商品id查询商品详情信息
+     *
+     * @param param
+     * @return
+     */
+    @Override
+    public R detail(ProductIdParam param) {
+        Product product = productMapper.selectById(param.getProductID());
+        R ok = R.ok(product);
+        log.info("ProductServiceImpl.detail业务结束，结果{}",ok);
+        return ok;
+    }
+
+    /**
+     * 查询商品对应的详情集合
+     *
+     * @param param
+     * @return
+     */
+    @Override
+    public R pictures(ProductIdParam param) {
+        QueryWrapper<Picture> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("product_id",param.getProductID());
+        List<Picture> pictures = pictureMapper.selectList(queryWrapper);
+
+        R ok = R.ok(pictures);
+        log.info("ProductServiceImpl.picture业务结束，结果{}",ok);
         return ok;
     }
 }

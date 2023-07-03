@@ -1,6 +1,7 @@
 package com.jumusu.product.controller;
 
 import com.jumusu.param.ProductHotParam;
+import com.jumusu.param.ProductIdParam;
 import com.jumusu.param.ProductIdsParam;
 import com.jumusu.param.ProductPromoParam;
 import com.jumusu.product.service.ProductService;
@@ -55,5 +56,19 @@ public class ProductController {
             return R.fail("类别商品查询失败");
         }
         return productService.byCategory(param);
+    }
+    @PostMapping("detail")
+    public R detail(@RequestBody @Validated ProductIdParam param ,BindingResult result){
+        if (result.hasErrors()) {
+            return R.fail("商品详情查询失败");
+        }
+        return productService.detail(param);
+    }
+    @PostMapping("pictures")
+    public R pictures(@RequestBody @Validated ProductIdParam param,BindingResult result){
+        if (result.hasErrors()) {
+            return R.fail("图片查询失败");
+        }
+        return productService.pictures(param);
     }
 }

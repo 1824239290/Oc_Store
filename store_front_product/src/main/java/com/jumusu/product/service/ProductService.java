@@ -1,6 +1,7 @@
 package com.jumusu.product.service;
 
 import com.jumusu.param.ProductHotParam;
+import com.jumusu.param.ProductIdParam;
 import com.jumusu.param.ProductIdsParam;
 import com.jumusu.utils.R;
 
@@ -38,4 +39,18 @@ public interface ProductService {
      * @return
      */
     R byCategory(ProductIdsParam param);
+
+    /**
+     * 根据商品id查询商品详情信息
+     * @param param
+     * @return
+     */
+    R detail(ProductIdParam param);
+
+    /**
+     * 查询商品对应的详情集合
+     * @param param
+     * @return
+     */
+    R pictures(ProductIdParam param);
 }
