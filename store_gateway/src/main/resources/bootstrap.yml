@@ -1,0 +1,13 @@
+server:
+  #  前端访问端口
+  port: 3000
+  servlet:
+    context-path: /
+spring:
+  application:
+    #程序服务名
+    name: gateway-service
+  cloud:
+    nacos:
+        #        注册中心的IP地址
+      server-addr: 192.168.30.100:8848

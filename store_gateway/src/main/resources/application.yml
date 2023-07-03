@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service #服务名称:只要不重复就可以，但推荐携程服务名。
+          uri: lb://user-service #路径的服务名称
+          predicates:
+            - Path=/user/**
+        - id: static-service #静态资源请求
+          uri: lb://static-service #路径的服务名称
+          predicates:
+            - Path=/public/**
+        - id: carousel-service #轮播图服务
+          uri: lb://carousel-service #路径的服务名称
+          predicates:
+            - Path=/carousel/**
+        - id: product-service #商品服务
+          uri: lb://product-service #路径的服务名称
+          predicates:
+            - Path=/product/**
+        - id: category-service #类别服务服务
+          uri: lb://category-service #路径的服务名称
+          predicates:
+            - Path=/category/**
