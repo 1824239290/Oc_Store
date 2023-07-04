@@ -3,7 +3,10 @@ package com.jumusu.product.service;
 import com.jumusu.param.ProductHotParam;
 import com.jumusu.param.ProductIdParam;
 import com.jumusu.param.ProductIdsParam;
+import com.jumusu.pojo.Product;
 import com.jumusu.utils.R;
+
+import java.util.List;
 
 /**
  * @Author: 橘木苏_Oc
@@ -53,4 +56,10 @@ public interface ProductService {
      * @return
      */
     R pictures(ProductIdParam param);
+
+    /**
+     * 搜索服务调用获取全部商品数据集合
+     * @return
+     */
+    List<Product> allList();
 }

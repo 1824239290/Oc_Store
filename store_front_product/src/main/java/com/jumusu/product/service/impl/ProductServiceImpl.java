@@ -158,4 +158,16 @@ public class ProductServiceImpl implements ProductService {
         log.info("ProductServiceImpl.picture业务结束，结果{}",ok);
         return ok;
     }
+
+    /**
+     * 搜索服务调用获取全部商品数据集合
+     *
+     * @return
+     */
+    @Override
+    public List<Product> allList() {
+        List<Product> productList = productMapper.selectList(null);
+        log.info("ProductServiceImpl.allList业务结束，结果{}",productList);
+        return productList;
+    }
 }
