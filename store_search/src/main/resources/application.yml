@@ -1,0 +1,10 @@
+ribbon:
+  eager-load:
+    clients:
+      - search-service
+    enabled: true
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
